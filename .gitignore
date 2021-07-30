@@ -1,0 +1,21 @@
+# Ignoring Environment Files
+.idea
+venv
+.vscode
+
+.DS_Store
+__pycache__/
+env/
+*.pyc
+.coverage
+validator.egg-info
+/src/dist
+/src/build
+/src/-
+/src/.pytest_cache
+/src/list
+
+
+# arquivo de variáveis sensíveis
+*.env
+*/**.secrets.*

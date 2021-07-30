@@ -1,0 +1,38 @@
+services:
+  - docker:dind  
+
+stages:
+  - test 
+  - build
+  # - deploy
+
+teste:
+  stage: test
+  image: python:3.8-slim
+  variables:
+    FLASK_APP: "validator/app.py"
+  before_script:
+    - apt-get update
+    - pip install -r src/requirements-dev.txt
+  # tags:
+  #   - docker-compose
+  script:
+    - cd src/
+    - pip install .
+    - pytest tests/ -v --cov=validator
+
+build-docker:
+  stage: build
+  image: docker/compose
+  # tags:
+  #   - docker-compose
+  script:
+    - docker-compose build
+
+# deploy-stack:
+#   stage: deploy
+#   image: docker/compose
+#   # tags:
+#   #   - docker-compose
+#   script:
+#     - docker-compose up -d

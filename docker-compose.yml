@@ -1,0 +1,62 @@
+version: '3.7'
+
+services:
+
+  mongo:
+    image: mongo:5.0.1
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - mongo_compose_network
+
+  # mongo-express: # nome dado ao processo docker (poderia ser outro)
+  #   image: mongo-express:0.54.0 # imagem docker do mongo - docker hub
+  #   restart: always             # sempre que o container cair ele será reiniciado
+  #   ports: # portas que serão liberadas/usadas pelo container do mongo-express
+  #     - 8081:8081
+  #   environment: # configurações de ambiente
+  #     ME_CONFIG_BASICAUTH_USERNAME: root
+  #     ME_CONFIG_BASICAUTH_PASSWORD: rootexample
+  #     ME_CONFIG_MONGODB_PORT: 27017
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: rootexample
+  #   links:
+  #     - mongo
+  #   networks:
+  #     - mongo_compose_network
+
+  validator:
+    build:
+      context: src
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+     - "5000:5000"
+    environment: # configurações de ambiente
+      # FLASK_DEBUG: "true"
+      # FLASK_ENV: development 
+      # DB_DATABASE_URI: "mongodb://root:rootpassword@mongo:27017"
+      # DB_DATABASE_NAME: "db_validator"
+      # SECRET_KEY: key
+      FLASK_DEBUG: ${FLASK_DEBUG}
+      FLASK_ENV: ${FLASK_ENV}
+      DB_DATABASE_URI: ${DB_DATABASE_URI}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+      SECRET_KEY: ${SECRET_KEY}
+    links:
+      - mongo
+    networks:
+      - mongo_compose_network
+
+networks:
+  mongo_compose_network:
+    driver: bridge
+
+volumes:
+  mongodb_data:

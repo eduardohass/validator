@@ -1,0 +1,16 @@
+black
+flake8
+Flask
+flask-debugtoolbar
+flask-shell-ipython
+Flask-Admin
+ipdb
+ipython
+isort
+pytest
+pytest-flask
+pytest-cov
+dynaconf
+bcrypt
+cchardet
+pymongo

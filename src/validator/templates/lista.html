@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+{% block body %}
+<table class="table is-striped is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Categoria</th>
+      <th>Status</th>
+      <th>Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rule in rules %}
+    <tr>
+      <td>{{ rule.name }}</td>
+      <td>{{ rule.category }}</td>
+      <td>{{ rule.status }}</td>
+      <td>{{ rule.type }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,33 @@
+[default]
+DEBUG = false
+DB_DATABASE_URI = "mongodb://root:hass123@mongodb:27017"
+DB_DATABASE_NAME = "db_validator"
+ADMIN_APP_NAME = "Validator app"
+ADMIN_TEMPLATE_MODE = "flatly" #bootswatch para os templates
+EXTENSIONS = [
+    "validator.ext.db:init_app",
+    "validator.ext.admin:init_app",
+    "validator.ext.cli:init_app",
+    "validator.ext.toolbar:init_app",
+    "validator.ext.site:init_app"
+]
+
+
+[development]
+DEBUG = true
+DB_DATABASE_URI = "mongodb://root:hass123@localhost:27017"
+# DEBUG_TB_ENABLED = true
+# DEBUG_TB_HOSTS = true
+# DEBUG_TB_INTERCEPT_REDIRECTS = true
+# DEBUG_TB_TEMPLATE_EDITOR_ENABLED = true
+# DEBUG_TB_PROFILER_ENABLED = true
+
+
+[staging]
+
+
+
+
+[production]
+#DB_DATABASE_URI = "mongodb://root:hass123@mongodb:27017"
+#DB_DATABASE_NAME = "db_validator"
