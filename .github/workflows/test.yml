@@ -1,7 +1,10 @@
 name: build
-on: [push, pull_request]
+on: 
+  workflow_success:
+    workflow: Test
+
 jobs:
-  Build-docker-compose:
+  build-docker-compose:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -10,6 +13,7 @@ jobs:
         run: docker-compose up -d
 
   Test:
+    needs: build-docker-compose
     runs-on: ubuntu-latest
     steps:
       - name: executando testes
