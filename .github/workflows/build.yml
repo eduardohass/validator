@@ -1,0 +1,10 @@
+name: build
+on: [push, pull_request]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: docker/compose
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: build da imagem via docker-compose
+        run: docker-compose up -d
