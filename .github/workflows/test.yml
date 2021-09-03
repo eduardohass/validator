@@ -1,8 +1,7 @@
 name: build
-on: 
-  workflow_success:
-    workflow: Test
 
+on: [push]
+  
 jobs:
   build-docker-compose:
     runs-on: ubuntu-latest
