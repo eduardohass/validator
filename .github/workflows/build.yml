@@ -1,8 +1,8 @@
 name: build
 on: [push, pull_request]
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: docker/compose
+  Build-docker-compose:
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
