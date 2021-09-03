@@ -1,0 +1,16 @@
+name: build
+on: [push, pull_request]
+jobs:
+  Build-docker-compose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: build da imagem via docker-compose
+        run: docker-compose up -d
+
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executando testes
+        run: pytest tests/ -v --cov=validator
